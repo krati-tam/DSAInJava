@@ -1,0 +1,16 @@
+There are two approaches of solving this problem.
+
+1. Using Recursion 
+
+
+	public TreeNode invertTree(TreeNode root) {
+		
+    if(root==null)
+        return null ;
+     TreeNode  left=invertTree(root.left);
+     TreeNode  right=invertTree(root.right);  
+      root. left=right;
+       root.right= left;
+       return root;
+
+2. Level Order Traversal
