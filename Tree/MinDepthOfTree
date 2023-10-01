@@ -1,0 +1,16 @@
+class Solution {
+ public  int recur(TreeNode root){
+  if(root.left == null && root.right == null)
+        return 1;
+    if(root.left == null)
+        return recur (root.right) +1;
+    if(root.right == null)
+        return recur(root.left)+1;
+     
+          return Math.min(minDepth(root.left),minDepth(root.right))+1;
+    }
+	public int minDepth(TreeNode root) {
+		// Your code goes here
+           return recur (root);
+    }
+	}
