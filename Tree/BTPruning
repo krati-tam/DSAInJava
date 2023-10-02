@@ -1,3 +1,6 @@
+Pruning  :- Any subtree which doesn't having node as 1 has been removed from the tree.
+
+
 class solution 
 {
   public TreeNode pruneTree(TreeNode root){
