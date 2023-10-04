@@ -1,0 +1,60 @@
+class Trie {
+private Node root;
+public Trie() {
+root = new Node();
+    }
+private class Node {
+ Node children[];
+boolean endNode ;
+
+public Node(){
+children = new Node [26];
+endNode=false;
+    } 
+ }
+
+public void insert(String word) {
+		// Your code goes here
+		Node temp= root;
+		for(int i=0;i<word.length();i++)
+		{ int childIndex= word.charAt(i)-'a';
+			if(temp.children[childIndex]==null)
+			{
+                temp.children[childIndex]= new Node();
+			}
+           // if(i == word.length()-1 )
+			temp= temp.children[childIndex];
+		}
+		temp.endNode = true;
+	}
+
+	public boolean search(String word) {
+		// Your code goes here
+		Node temp= root;
+	for(int i=0;i<word.length();i++)
+		{int childIndex= word.charAt(i)-'a';
+		if(temp.children[childIndex]==null)
+		{
+			return false;
+		}
+		temp = temp.children[childIndex];
+	}
+return temp.endNode;
+	}
+
+	public boolean startsWith(String prefix) {
+		// Your code goes here
+		Node temp= root;
+	for(int i=0;i<prefix.length();i++)
+		{
+   int childIndex= prefix.charAt(i)-'a';
+		if(temp.children[childIndex]==null)
+		{
+			return false;
+		}
+		temp = temp.children[childIndex];
+	}
+return true;
+
+	}
+}
