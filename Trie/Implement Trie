@@ -1,6 +1,7 @@
 class Trie {
 private Node root;
-public Trie() {
+public Trie() 
+{
 root = new Node();
     }
 private class Node {
