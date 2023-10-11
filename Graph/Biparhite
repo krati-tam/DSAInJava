@@ -1,0 +1,37 @@
+class Solution {
+    int visited[];
+    boolean isBipartite = true;
+    void dfs(int src, List<List<Integer>> graph, int color)
+    {
+        visited[src]=color;
+        for(Integer neighbour :graph .get(src))
+        {
+            if(visited[neighbour] == -1)
+            {
+                dfs(neighbour,graph, 1-color);
+            }
+            else if(visited[neighbour]== color)
+            {
+                isBipartite = false;
+                return ;
+            }
+        }
+    }
+	public boolean isBipartite(List<List<Integer>> graph) { 
+		// Your code goes here
+        int n = graph.size();
+        visited = new int [n];
+        for(int i=0;i<n;i++)
+        {
+visited[i]=-1;
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(visited[i]==-1)
+            {
+                dfs(i,graph,1);
+            }
+        }
+        return isBipartite;
+	}
+}
