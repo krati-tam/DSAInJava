@@ -1,0 +1,49 @@
+class Solution {
+    final int N = 100005;
+    int visited[];
+    List<List<Integer>> ad = new ArrayList<>();
+int dfs(int src, int componentNumber)
+{
+    int answer=1;
+    visited[src] = componentNumber;
+
+    for(Integer neighbour : ad.get(src))
+    {
+        if(visited[neighbour]==-1)
+        {
+            answer+= dfs(neighbour,componentNumber);
+        }
+    }
+    return answer;
+}
+    public int journeyToMoon(int n, int[][] astronaut) {
+        // Your code goes here
+	visited = new int[n];
+	for(int i=0; i<n; i++)
+	{
+		ad.add(new ArrayList<>());
+		visited[i] = -1;
+	}
+
+for(int i=0;i<astronaut.length;i++)
+{
+	ad.get(astronaut[i][0]).add(astronaut[i][1]);
+	ad.get(astronaut[i][1]).add(astronaut[i][0]);
+}
+
+int componentNumber =1;
+int answer=0;
+int totalVisitedElements =0;
+for(int i=0;i<n;i++)
+{
+    if(visited[i] ==-1)
+    {
+        int currentSize = dfs(i,componentNumber);
+        totalVisitedElements +=currentSize;
+        componentNumber++;
+        answer += currentSize*(n- totalVisitedElements);
+    }
+}
+return answer;
+}
+}
