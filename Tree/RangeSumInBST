@@ -1,0 +1,25 @@
+We have to find the sum of node values between the range of low and high point so can use recursion to solve this problem.
+As we all know in BST left tree node values are less than root and right tree node values are greater than root.
+
+1. firstly check the base condition and initialize the sum variable.
+2. Check if the value of root is greater than low pointer 
+   then add into sum value with call the recursive method while passing the root value as left.
+Check if the value of root is greater than low and less than high pointer.
+    then add the sum value with root value.
+Check if the value of root is less than high pointer 
+   then add into sum value with call the recursive method while passing the root value as right.
+
+class Solution {
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if(root == null) return 0;
+        int sum=0;
+        if(root.val >low)
+        sum+= rangeSumBST(root.left, low,high);
+        if(root.val>= low && root.val<=high)
+        sum+= root.val;
+        if(root.val <high)
+        sum+= rangeSumBST(root.right, low,high);
+
+        return sum;
+    }
+}
