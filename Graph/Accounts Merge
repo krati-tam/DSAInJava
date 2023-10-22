@@ -1,0 +1,3 @@
+Different gmail accounts are given with specified user name, our task is to arrange them in a sorted order along with associated gmail to particular name.
+
+Technique will use here is DSU to merge all the accounts using union.
