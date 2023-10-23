@@ -1,0 +1,80 @@
+class Solution {
+  /*  1. create an edge class 
+    2. craete an  union find class
+    3. support by weights
+    4. build our mst
+    */
+	public int minCostToSupplyWater(int n, int[] wells, int[][] pipes) {
+		// Your code goes here
+        PriorityQueue<Edge> pq =  new PriorityQueue<> ((a,b) -> a.cost -b.cost);
+        UnionFind uf = new UnionFind(n+1);
+        int minCost=0;
+        int processed= 0;
+
+        //fill our pq first
+        for(int k=1;k<n+1;k++){
+            Edge newEdge= new Edge(0,k,wells[k-1]);
+            pq.add(newEdge);
+        }
+        for(int [] pipe :pipes){
+            Edge newEdge = new Edge (pipe[0],pipe[1],pipe[2]);
+            pq.add(newEdge);
+        }
+        while(!pq.isEmpty () && processed < n+1){
+            Edge current = pq.poll();
+            int i= current.u;
+            int j= current.v;
+            int w= current.cost;
+            boolean unite= uf.union(i,j);
+            if(unite){
+                processed ++;
+                minCost +=w;
+            }
+        }
+        return minCost;
+	}
+    public class Edge{
+        int u,v,cost;
+        public Edge(int u,int v,int cost){
+            this.u=u;
+            this.v=v;
+            this.cost=cost;
+        }
+    }
+    public class UnionFind{
+        int [] parent;
+        int [] rank;
+
+        public  UnionFind(int n){
+            parent = new int [n];
+            rank = new int [n];
+
+            for(int k=0;k<n;k++){
+                parent [k]=k;
+                rank[k]=1;
+            }
+        }
+        public int findParent(int i){
+            while(i!= parent [i]){
+                parent [i]=parent[parent[i]];
+                i= parent [i];
+            }
+            return i;
+        }
+        public boolean union(int i,int j){
+            int rootA= findParent(i);
+            int rootB= findParent(j);
+            if(rootA== rootB)
+            return false;
+if(rank[rootA] >rank[rootB]){        //they are already connected
+    parent[rootB] = rootA;
+    rank[rootA]+=rank[rootB];
+}
+else{
+    parent[rootA] = rootB;
+    rank[rootB] +=rank[rootA];
+}
+return true;
+        }
+    }
+}
