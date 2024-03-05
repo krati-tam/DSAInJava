@@ -1,0 +1,4 @@
+int intArray[]; 
+int[] intArray; 
+
+Initialization :-    intArray = new int[20]; 
