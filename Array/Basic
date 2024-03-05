@@ -1,0 +1,6 @@
+data type[] arrName;
+datatype arrName[];
+datatype [] arrName;
+
+
+Student[] arr = new Student[5];
