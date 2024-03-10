@@ -3,4 +3,4 @@ datatype arrName[];
 datatype [] arrName;
 
 
-Student[] arr = new Student[5];
+int Student[]  = new Student[5];
